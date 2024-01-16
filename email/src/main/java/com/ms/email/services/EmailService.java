@@ -38,10 +38,12 @@ public class EmailService {
             emailSender.send(message);
 
             emailModel.setStatusEmail(StatusEmail.SENT);
-            return emailRepository.save(emailModel);
+
         } catch (MailException e) {
             emailModel.setStatusEmail(StatusEmail.ERROR);
             throw new RuntimeException("Error ao enviar o email: " + e);
+        } finally {
+            return emailRepository.save(emailModel);
         }
     }
 }

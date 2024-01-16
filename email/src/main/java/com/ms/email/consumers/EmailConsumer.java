@@ -18,9 +18,16 @@ public class EmailConsumer {
     }
 
     @RabbitListener(queues = "${broker.queue.email.name}")
-    public void listenEmailQueue(@Payload EmailRecordDto emailRecordDto){
-        var emailModel = new EmailModel();
-        BeanUtils.copyProperties(emailRecordDto, emailModel);
-        emailService.sendEmail(emailModel);
+    public void listenEmailQueue(@Payload EmailRecordDto emailRecordDto) throws Exception{
+        try {
+            var emailModel = new EmailModel();
+            BeanUtils.copyProperties(emailRecordDto, emailModel);
+            emailService.sendEmail(emailModel);
+        } catch (Exception e) {
+            // Registre a exceção ou tome alguma ação apropriada
+            e.printStackTrace();
+            // Você pode também logar a exceção em um sistema de logging, por exemplo:
+            // logger.error("Erro no processamento da mensagem do RabbitMQ", e);
+        }
     }
 }
