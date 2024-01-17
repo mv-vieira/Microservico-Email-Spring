@@ -24,10 +24,7 @@ public class EmailConsumer {
             BeanUtils.copyProperties(emailRecordDto, emailModel);
             emailService.sendEmail(emailModel);
         } catch (Exception e) {
-            // Registre a exceção ou tome alguma ação apropriada
             e.printStackTrace();
-            // Você pode também logar a exceção em um sistema de logging, por exemplo:
-            // logger.error("Erro no processamento da mensagem do RabbitMQ", e);
         }
     }
 }
