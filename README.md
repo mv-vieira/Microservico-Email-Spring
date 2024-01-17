@@ -26,6 +26,8 @@ Tecnológias e conceitos usados no projeto:
 
 • JUnit
 
+• Mockito
+
 • Tratamento de Exceções
 
 ## Fluxo completo da comunicação assíncrona
